@@ -4,15 +4,14 @@ Defines a new engine for storage
 Database mdoe, use with SQLAlchemy
 """
 from os import getenv
-from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import Session, sessionmaker, scoped_session
-import models
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.amenity import Amenity
 from models.place import Place
 from models.city import City
 from models.state import State
 from models.user import User
-from models.base_model import Base, BaseModel
+from models.base_model import Base
 from models.review import Review
 
 
