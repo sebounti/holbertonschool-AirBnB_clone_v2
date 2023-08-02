@@ -15,6 +15,7 @@ from models.user import User
 from models.base_model import Base, BaseModel
 from models.review import Review
 
+
 class DBStorage:
     """
     Creates database
@@ -30,7 +31,9 @@ class DBStorage:
         pwd = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
         database = getenv('HBNB_MYSQL_DB')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(user, pwd, host, database), pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+                                      format(user, pwd, host, database),
+                                      pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
@@ -52,7 +55,8 @@ class DBStorage:
             objects += self.__session.query(User)
             objects += self.__session.query(Review)
             objects += self.__session.query(State)
-        return {"{}.{}".format(obj.__class__.__name__, obj.id): obj for obj in objects}
+        return {"{}.{}".format(obj.__class__.__name__, obj.id):
+                obj for obj in objects}
 
     def new(self, obj):
         """
@@ -78,6 +82,7 @@ class DBStorage:
         Commit all changes in db after changings
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session
