@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"Script"
+'''script that starts a Flask web application'''
 
 from flask import Flask
 
@@ -16,9 +16,10 @@ def hbnb():
     return 'HBNB'
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c(text):
-    return 'C {}'.format(escape(text.replace('_', ' ')))
+@app.route("/c/<text>", strict_slashes=False)
+def c_print(text):
+    result = text.replace('_', ' ')
+    return 'C {}'.format(result)
 
 
 if __name__ == '__main__':
