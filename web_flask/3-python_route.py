@@ -22,8 +22,9 @@ def c_print(text):
     return 'C {}'.format(result)
 
 
+@app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def python_print(text):
+def python_print(text='is cool'):
     result = text.replace('_', ' ')
     return 'Python {}'.format(result)
 
