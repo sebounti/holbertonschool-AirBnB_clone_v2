@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 '''script that starts a Flask web application'''
 
-from flask import Flask, render_template
+from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -29,13 +30,12 @@ def python_print(text='is cool'):
     return 'Python {}'.format(result)
 
 
-@app.route("/number/<n>", strict_slashes=False)
+@app.route("/number/<int:n>", strict_slashes=False)
 def num(n):
-    if type(n) == int:
-        return '{} is a number'.format(n)
+    return f"{n} is a number"
 
 
-@app.route("/number_template/<n>", strict_slashes=False)
+@app.route("/number_template/<int:n>", strict_slashes=False)
 def num_template(n):
     if type(n) == int:
         return render_template('5-number.html', n=n)
