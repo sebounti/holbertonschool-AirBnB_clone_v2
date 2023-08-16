@@ -32,7 +32,7 @@ def python_print(text='is cool'):
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def num(n):
-    return f"{n} is a number"
+    return "{n} is a number".format(n)
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
