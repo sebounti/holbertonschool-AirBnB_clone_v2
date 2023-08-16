@@ -12,10 +12,9 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
+    cities = relationship('City', backref='state', cascade='delete')
+
     if getenv('HBNB_TYPE_STORAGE') == 'db':
-        cities = relationship('City', cascade='all, delete, delete-orphan',
-                              backref='state')
-    else:
         @property
         def cities(self):
             """
@@ -23,7 +22,8 @@ class State(BaseModel, Base):
                 FileStorage relationship between State and City
             """
             listCities = []
-            for city in models.storage.all(City).values():
+
+            for city in list(models.storage.all(City).values()):
                 if city.state_id == self.id:
                     listCities.append(city)
             return listCities
