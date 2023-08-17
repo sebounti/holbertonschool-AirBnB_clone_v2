@@ -8,5 +8,5 @@ def setup_storage():
     else:
         return FileStorage()
 
-    storage = setup_storage()
-    storage.reload()
+storage = setup_storage()
+storage.reload()
